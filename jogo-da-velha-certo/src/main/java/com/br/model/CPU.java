@@ -13,10 +13,21 @@ public class CPU {
 	public String [] [] fazerJogada(String [] [] tabuleiro){
 		Random gerador = new Random();
 		boolean inserir = false;
+		//Jogada da Máquina se escolhido o nivel fácil
+		/*
+		while (inserir == false) {
+			for (int i = 0; i < 3; i++) {
+				for (int j = 0; j < 3; j++) {
+					
+				}
+			}
+		}
+		*/
+		
 		while (inserir == false) {
 			int linha = gerador.nextInt(2);
 			int coluna = gerador.nextInt(2);
-			if (tabuleiro [linha] [coluna] == null || tabuleiro [linha] [coluna].isEmpty()) {
+			if (tabuleiro [linha] [coluna].isEmpty()) {
 				tabuleiro [linha] [coluna] = escolha;
 				System.out.println("A CPU escolheu a posição " + (linha + 1) + "X" + (coluna + 1) + " para marcar um " + this.escolha);
 				inserir = true;
@@ -83,5 +94,4 @@ public class CPU {
 		return true;
 	}
 	
-
 }

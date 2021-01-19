@@ -1,11 +1,53 @@
 package com.br.model;
 
+import javax.swing.JOptionPane;
+
 public class Jogador {
 	
 	//Atributos da classe
 	private String nome;
 	private String escolha;
 	private int pontuacao;
+	
+	//Método que realiza a Jogada do jogador
+	public String [] [] fazerJogada(String [] [] tabuleiro){
+		boolean inserir = false;
+		int linha = 0;
+		int coluna = 0;
+		while (inserir == false) {
+			//Validação da entrada de dados, só aceita os valores 1, 2 ou 3
+			while (inserir == false) {
+				String txtLinha = JOptionPane.showInputDialog("Escolha uma posição da linha do tabuleiro: \n1, 2 ou 3");
+				if (txtLinha.equals("1") || txtLinha.equals("2") || txtLinha.equals("3")) {
+					linha = Integer.parseInt(txtLinha) - 1;
+					inserir = true;
+				} else {
+					System.out.println("Valor inválido, insira novamente");
+				}
+			}
+			inserir = false;
+			//Depois de inserido o valor da linha valida o valor da coluna
+			while (inserir == false) {
+				String txtColuna = JOptionPane.showInputDialog("Escolha uma posição da coluna do tabuleiro: \n1, 2 ou 3");
+				if (txtColuna.equals("1") || txtColuna.equals("2") || txtColuna.equals("3")) {
+					coluna = Integer.parseInt(txtColuna) - 1;
+					inserir = true;
+				} else {
+					System.out.println("Valor inválido, insira novamente");
+				}
+			}
+			inserir = false;
+			//Após validados os valores digitados verifica-se se a posição escolhida está disponível para marcação
+			if (tabuleiro[linha] [coluna].isEmpty()) {
+				tabuleiro[linha] [coluna] = this.escolha;
+				System.out.println("Você escolheu a posição " + (linha + 1) + "X" + (coluna + 1) + " para marcar um " + this.escolha);
+				inserir = true;
+			} else {
+				System.out.println("Essa posição já está ocupada!");
+			}
+		}
+		return tabuleiro;
+	}
 	
 	//Setters e Getters
 	public String getNome() {
