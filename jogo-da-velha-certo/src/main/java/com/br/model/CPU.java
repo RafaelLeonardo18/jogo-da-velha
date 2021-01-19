@@ -13,7 +13,6 @@ public class CPU {
 	public String [] [] fazerJogada(String [] [] tabuleiro){
 		Random gerador = new Random();
 		boolean inserir = false;
-		this.escolha = "circulo";
 		while (inserir == false) {
 			int linha = gerador.nextInt(2);
 			int coluna = gerador.nextInt(2);

@@ -18,14 +18,14 @@ class Teste {
 	@Test
 	void testeTabuleiro() {
 		Tabuleiro tabuleiro = new Tabuleiro();
-		//Gera numero aleatório
-		Random aleatorio = new Random();
 		boolean inserir = false;
 		Jogador jogador = new Jogador();
 		CPU cpu = new CPU();
 		jogador.setNome("Luiz");
 		jogador.setEscolha("X");
 		jogador.setPontuacao(0);
+		cpu.setEscolha("O");
+		cpu.setPontuacao(0);
 		System.out.println("Iniciar Jogo");
 		for (int i = 0; i <= 9; i++) {
 			//Vez do Jogador0
@@ -48,7 +48,11 @@ class Teste {
 			//Vez da máquina
 			i++;
 			tabuleiro.setTabuleiro(cpu.fazerJogada(tabuleiro.getTabuleiro()));
-			}
+			if (tabuleiro.finalizarJogo(cpu.getEscolha(), tabuleiro.getTabuleiro())) {
+				System.out.println("Oh não... A CPU venceu a partida! Tente novamente");
+				break;
+			} 
 		}
+	}
 
 }
