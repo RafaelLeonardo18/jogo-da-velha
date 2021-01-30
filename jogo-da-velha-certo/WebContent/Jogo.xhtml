@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<h:head>
+		<title>Jogo da Velha</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+		<link rel="shortcut icon" href="resources/img/ttt.jpg" type="image/jpg"></link>
+		<link rel="stylesheet" href="resources/css/bootstrap.min.css"></link>
+		<link rel="stylesheet" href="resources/css/game.css"></link>
+	</h:head>
+	
+	<h:body>
+		
+		<div class="container">
+    		<div class="row">
+        		<div class="col-md-6">
+            		<div class="card">
+                		<h:form class="box">
+                			<p:growl id="info" showDetail="true" showSummary="false"/>
+                			
+                			<h:panelGrid columns="3" cellpadding="3" cellspacing="3">
+		
+								<h:panelGroup id="ladoJogador01">
+									<h:graphicImage library="img" name="user01.png" width="140" height="140"/>
+									<br/>
+									<h2> <h:outputText value="#{gameBean.nome1}"/> </h2>
+								</h:panelGroup>
+								
+								<h:panelGroup id="centro">
+									<table border="3">
+                    					<tr>
+                    						<td>
+                    							<h:commandLink actionListener="#{gameBean.inserirValor}">
+                    								<p:graphicImage library="img" name="#{gameBean.tabuleiro.tabuleiro[0][0]}" width="60" height="60"/>
+                    								<f:param name="linha" value="0"/>
+                    								<f:param name="coluna" value="0"/>
+                    							</h:commandLink>
+                    						</td>
+                    						<td>
+                    							<h:commandLink actionListener="#{gameBean.inserirValor}">
+                    								<p:graphicImage library="img" name="#{gameBean.tabuleiro.tabuleiro[0][1]}" width="60" height="60"/>
+                    								<f:param name="linha" value="0"/>
+                    								<f:param name="coluna" value="1"/>
+                    							</h:commandLink>
+                    						</td>
+                    						<td>
+                    							<h:commandLink actionListener="#{gameBean.inserirValor}">
+                    								<p:graphicImage library="img" name="#{gameBean.tabuleiro.tabuleiro[0][2]}" width="60" height="60"/>
+                    								<f:param name="linha" value="0"/>
+                    								<f:param name="coluna" value="2"/>
+                    							</h:commandLink>
+                    						</td>
+                    					</tr>
+                    					<tr>
+                    						<td>
+                    							<h:commandLink actionListener="#{gameBean.inserirValor}">
+                    								<p:graphicImage library="img" name="#{gameBean.tabuleiro.tabuleiro[1][0]}"/>
+                    								<f:param name="linha" value="1"/>
+                    								<f:param name="coluna" value="0"/>
+                    							</h:commandLink>
+                    						</td>
+                    						<td>
+                    							<h:commandLink actionListener="#{gameBean.inserirValor}">
+                    								<p:graphicImage library="img" name="#{gameBean.tabuleiro.tabuleiro[1][1]}"/>
+                    								<f:param name="linha" value="1"/>
+                    								<f:param name="coluna" value="1"/>
+                    							</h:commandLink>
+                    						</td>
+                    						<td>
+                    							<h:commandLink actionListener="#{gameBean.inserirValor}">
+                    								<p:graphicImage library="img" name="#{gameBean.tabuleiro.tabuleiro[1][2]}" />
+                    								<f:param name="linha" value="1"/>
+                    								<f:param name="coluna" value="2"/>
+                    							</h:commandLink>
+                    						</td>
+                    					</tr>
+                    					<tr>
+                    						<td>
+                    							<h:commandLink actionListener="#{gameBean.inserirValor}">
+                    								<p:graphicImage library="img" name="#{gameBean.tabuleiro.tabuleiro[2][0]}"/>
+                    								<f:param name="linha" value="2"/>
+                    								<f:param name="coluna" value="0"/>
+                    							</h:commandLink>
+                    						</td>
+                    						<td>
+                    							<h:commandLink actionListener="#{gameBean.inserirValor}">
+                    								<p:graphicImage library="img"  name="#{gameBean.tabuleiro.tabuleiro[2][1]}"/>
+                    								<f:param name="linha" value="2"/>
+                    								<f:param name="coluna" value="1"/>
+                    							</h:commandLink>
+                    						</td>
+                    						<td>
+                    							<h:commandLink actionListener="#{gameBean.inserirValor}">
+                    								<p:graphicImage library="img"  name="#{gameBean.tabuleiro.tabuleiro[2][2]}"/>
+                    								<f:param name="linha" value="2"/>
+                    								<f:param name="coluna" value="2"/>
+                    							</h:commandLink>
+                    						</td>
+                    					</tr>
+                    				</table>
+								</h:panelGroup>
+								
+								<h:panelGroup id="ladoJogador02">
+									<h:graphicImage library="img" name="#{gameBean.img}" width="140" height="140"/>
+									<br/>
+									<h2> <h:outputText value="#{gameBean.nome2}"/> </h2>
+								</h:panelGroup>
+	
+							</h:panelGrid>
+							
+                			<h:commandButton value="Jogar novamente" actionListener="#{gameBean.prepararJogo}" rendered="#{gameBean.encerrarJogo}"/>
+                    		<h:commandButton value="Voltar ao Menu Inicial" action="#{gameBean.retornarMenuPrincipal}" rendered="#{gameBean.encerrarJogo}"/>
+                    		                    		
+                		</h:form>
+            		</div>
+        		</div>
+    		</div>
+		</div>
+
+	</h:body>
+	
+</html>

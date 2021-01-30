@@ -2,24 +2,37 @@ package com.br.model;
 
 import javax.swing.JOptionPane;
 
-public class Jogador {
+import com.br.interfacejogo.InterfaceJogo;
+
+/**************************************************************************************************
+ * Descrição: classe que representa os jogadores reais 
+ * Data: 15/01/2021
+ * ***********************************************************************************************/
+
+public class Jogador implements InterfaceJogo {
 	
 	//Atributos da classe
 	private String nome;
 	private String escolha;
-	private int pontuacao;
+	private byte pontuacao;
 	
-	//Método que realiza a Jogada do jogador
+	//Construtor da classe
+	public Jogador() {
+		this.nome = "";
+		this.escolha = "";
+	}
+	
+	//Método de teste que realiza a Jogada do jogador, inserindo seu marcador na posição escolhida
 	public String [] [] fazerJogada(String [] [] tabuleiro){
 		boolean inserir = false;
-		int linha = 0;
-		int coluna = 0;
+		byte linha = 0;
+		byte coluna = 0;
 		while (inserir == false) {
 			//Validação da entrada de dados, só aceita os valores 1, 2 ou 3
 			while (inserir == false) {
-				String txtLinha = JOptionPane.showInputDialog("Escolha uma posição da linha do tabuleiro: \n1, 2 ou 3");
+				String txtLinha = JOptionPane.showInputDialog("Escolha uma linha do tabuleiro: 1, 2 ou 3");
 				if (txtLinha.equals("1") || txtLinha.equals("2") || txtLinha.equals("3")) {
-					linha = Integer.parseInt(txtLinha) - 1;
+					linha = (byte) (Integer.parseInt(txtLinha) - 1);
 					inserir = true;
 				} else {
 					System.out.println("Valor inválido, insira novamente");
@@ -28,9 +41,9 @@ public class Jogador {
 			inserir = false;
 			//Depois de inserido o valor da linha valida o valor da coluna
 			while (inserir == false) {
-				String txtColuna = JOptionPane.showInputDialog("Escolha uma posição da coluna do tabuleiro: \n1, 2 ou 3");
+				String txtColuna = JOptionPane.showInputDialog("Escolha uma coluna do tabuleiro: 1, 2 ou 3");
 				if (txtColuna.equals("1") || txtColuna.equals("2") || txtColuna.equals("3")) {
-					coluna = Integer.parseInt(txtColuna) - 1;
+					coluna = (byte) (Integer.parseInt(txtColuna) - 1);
 					inserir = true;
 				} else {
 					System.out.println("Valor inválido, insira novamente");
@@ -49,6 +62,13 @@ public class Jogador {
 		return tabuleiro;
 	}
 	
+	
+	//Método usado com interface web que realiza a Jogada do jogador, inserindo seu marcador na posição escolhida da tela, recebendo o valor da posição por parâmetro
+	public String [] [] fazerJogada(String [] [] tabuleiro, byte linha, byte coluna){
+		tabuleiro [linha] [coluna] = this.escolha;
+		return tabuleiro;
+	}	
+	
 	//Setters e Getters
 	public String getNome() {
 		return nome;
@@ -62,12 +82,13 @@ public class Jogador {
 	public void setEscolha(String escolha) {
 		this.escolha = escolha;
 	}
-	public int getPontuacao() {
+	public byte getPontuacao() {
 		return pontuacao;
 	}
-	public void setPontuacao(int pontuacao) {
+	public void setPontuacao(byte pontuacao) {
 		this.pontuacao = pontuacao;
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -77,6 +98,7 @@ public class Jogador {
 		result = prime * result + pontuacao;
 		return result;
 	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

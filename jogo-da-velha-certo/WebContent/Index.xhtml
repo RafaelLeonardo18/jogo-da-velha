@@ -6,14 +6,71 @@
 	xmlns:p="http://primefaces.org/ui">
 	
 	<h:head>
+		<title>Início</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 		<link rel="shortcut icon" href="resources/img/ttt.jpg" type="image/jpg"></link>
 		<link rel="stylesheet" href="resources/css/bootstrap.min.css"></link>
-		<title>Jogo da Velha</title>
+		<link rel="stylesheet" href="resources/css/telainicial.css"></link>
 	</h:head>
 
 	<h:body>
+
+		<div class="container">
+    		<div class="row">
+        		<div class="col-md-6">
+            		<div class="card">
+                		<h:form class="box" id="gameForm">
+                    		<h1>Jogo da Velha</h1>
+                    		<h:outputText style="color: #ffffff" value="Escolha o modo de jogo" rendered="#{inicioBean.renderizarOpcaoInicial}" />
+                    		<h:commandButton  value="1 Jogador" actionListener="#{inicioBean.modoJogo1}" rendered="#{inicioBean.renderizarOpcaoInicial}" />
+                    		
+                    		<!-- Opções do modo 01 jogador -->
+                    		<h:outputText style="color: #ffffff" value="Selecione o nível de dificuldade" rendered="#{inicioBean.renderizarOpcaoUm}"/>
+                    		<h:commandButton value="Fácil" action="#{inicioBean.iniciarJogo}"  rendered="#{inicioBean.renderizarOpcaoUm}">
+                    			<f:setPropertyActionListener value="1" target="#{inicioBean.dificuldade}" />
+                    		</h:commandButton>
+                    		
+                    		<h:commandButton value="Médio" action="#{inicioBean.iniciarJogo}"  rendered="#{inicioBean.renderizarOpcaoUm}">
+                    			<f:setPropertyActionListener value="2" target="#{inicioBean.dificuldade}" />
+                    		</h:commandButton>
+                    		
+							<h:commandButton value="Avançado" action="#{inicioBean.iniciarJogo}"  rendered="#{inicioBean.renderizarOpcaoUm}">
+								<f:setPropertyActionListener value="3" target="#{inicioBean.dificuldade}" />
+							</h:commandButton>
+                    		<!-- Fim opções de 01 jogador -->
+                    		
+                    		<!-- Opções de dois jogadores -->
+                    		<h:commandButton  value="2 Jogadores" actionListener="#{inicioBean.modoJogo2}" rendered="#{inicioBean.renderizarOpcaoInicial}"/>
+                    		<h:outputLabel style="color:#ffffff" value="Nome jogador 1 " rendered="#{inicioBean.renderizarOpcaoDois}"/>
+                    		<h:inputText id="nomeJogador1" value="#{inicioBean.nome01}" required="true" requiredMessage="Por favor informe o nome do jogador 1" rendered="#{inicioBean.renderizarOpcaoDois}" />
+                    		
+                    		<h:outputLabel style="color:#ffffff" value="Nome jogador 2 " rendered="#{inicioBean.renderizarOpcaoDois}"/>
+                    		<h:inputText id="nomeJogador2" value="#{inicioBean.nome02}" required="true" requiredMessage="Por favor informe o nome do jogador 2" rendered="#{inicioBean.renderizarOpcaoDois}"/>
+                    		
+                    		<h:outputText style="color: #ffffff" value="Escolha os marcadores" rendered="#{inicioBean.renderizarOpcaoDois}" />
+                    		<br/> <br/>
+                    		
+                    		<h:commandLink style="color: #ffffff" action="#{inicioBean.iniciarJogo}" rendered="#{inicioBean.renderizarOpcaoDois}">Jogador 01  <h:graphicImage library="img" name="X.png" width="24" height="24"/>  ||  <h:graphicImage library="img" name="O.png" width="24" height="24"/>  Jogador 02 
+                    			<f:param name="doisJogadores" value="XO"/>
+                    		</h:commandLink>
+                    		
+                    		<br/> <br/>
+                    		
+                    		<h:commandLink style="color: #ffffff" action="#{inicioBean.iniciarJogo}" rendered="#{inicioBean.renderizarOpcaoDois}">Jogador 01  <h:graphicImage library="img" name="O.png" width="24" height="24"/>  ||  <h:graphicImage library="img" name="X.png" width="24" height="24"/>  Jogador 02 
+                    			<f:param name="doisJogadores" value="OX"/>
+                    		</h:commandLink>
+                    		
+                    		<br/>
+                    		
+                    		<h:commandButton value="Voltar ao menu principal"  actionListener="#{inicioBean.voltar}" rendered="#{inicioBean.renderizarBotaoVoltar}"/>
+                    		
+                    		<p:growl showSummary="false" showDetail="true"/>
+                		</h:form>
+            		</div>
+        		</div>
+    		</div>
+		</div>
 
 		<script type="text/javascript" src="resources/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="resources/js/bootstrap.bundle.min.js"></script>
