@@ -15,9 +15,7 @@ class Teste {
 		CPU cpu = new CPU();
 		jogador.setNome("Rafael");
 		jogador.setEscolha("X");
-		jogador.setPontuacao((byte) 0);
 		cpu.setEscolha("O");
-		cpu.setPontuacao((byte) 0);
 		cpu.setDificuldade((byte) 3);
 		System.out.println("Iniciar Jogo");
 		while (true) {

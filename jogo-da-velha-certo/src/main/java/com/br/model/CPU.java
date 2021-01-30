@@ -13,7 +13,6 @@ public class CPU implements InterfaceJogo {
 	
 	//Atributos da classe
 	private byte dificuldade;
-	private byte pontuacao;
 	private String escolha;
 	
 	//Construtor da classe
@@ -328,12 +327,6 @@ public class CPU implements InterfaceJogo {
 	public void setDificuldade(byte dificuldade) {
 		this.dificuldade = dificuldade;
 	}
-	public byte getPontuacao() {
-		return pontuacao;
-	}
-	public void setPontuacao(byte pontuacao) {
-		this.pontuacao = pontuacao;
-	}
 
 	public String getEscolha() {
 		return escolha;
@@ -341,37 +334,6 @@ public class CPU implements InterfaceJogo {
 
 	public void setEscolha(String escolha) {
 		this.escolha = escolha;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + dificuldade;
-		result = prime * result + ((escolha == null) ? 0 : escolha.hashCode());
-		result = prime * result + pontuacao;
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		CPU other = (CPU) obj;
-		if (dificuldade != other.dificuldade)
-			return false;
-		if (escolha == null) {
-			if (other.escolha != null)
-				return false;
-		} else if (!escolha.equals(other.escolha))
-			return false;
-		if (pontuacao != other.pontuacao)
-			return false;
-		return true;
 	}
 	
 }

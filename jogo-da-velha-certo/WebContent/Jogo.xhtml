@@ -25,11 +25,12 @@
                 			<p:growl id="info" showDetail="true" showSummary="false"/>
                 			
                 			<h:panelGrid columns="3" cellpadding="3" cellspacing="3">
-		
+                					
 								<h:panelGroup id="ladoJogador01">
 									<h:graphicImage library="img" name="user01.png" width="140" height="140"/>
 									<br/>
 									<h2> <h:outputText value="#{gameBean.nome1}"/> </h2>
+									<h2> <h:outputText value="#{gameBean.pontuacao01}"/> </h2>
 								</h:panelGroup>
 								
 								<h:panelGroup id="centro">
@@ -110,6 +111,7 @@
 									<h:graphicImage library="img" name="#{gameBean.img}" width="140" height="140"/>
 									<br/>
 									<h2> <h:outputText value="#{gameBean.nome2}"/> </h2>
+									<h2> <h:outputText value="#{gameBean.pontuacao02}"/> </h2>
 								</h:panelGroup>
 	
 							</h:panelGrid>

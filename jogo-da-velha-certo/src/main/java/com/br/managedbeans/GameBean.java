@@ -27,6 +27,8 @@ public class GameBean implements Serializable {
 	private CPU cpu = null;
 	private String nome1 = "";
 	private String nome2 = "";
+	private byte pontuacao01 = 0;
+	private byte pontuacao02 = 0;
 	private String img = "";
 	private boolean encerrarJogo = false;
 	
@@ -89,9 +91,9 @@ public class GameBean implements Serializable {
 					tabuleiro.setTabuleiro(jogador1.fazerJogada(tabuleiro.getTabuleiro(), linha, coluna));
 					//Valida se após a escolha do jogador se ele venceu a partida
 					if (tabuleiro.finalizarJogo(jogador1.getEscolha())) {
-						jogador1.setPontuacao((byte) (jogador1.getPontuacao() + 1));
 						FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Vitória: ", "O jogador venceu a partida!");
 						FacesContext.getCurrentInstance().addMessage(null, msg);
+						pontuacao01 ++;
 						encerrarJogo = true;
 					//Caso não tenha preenchido a linha, verifica se houve empate
 					} else if (tabuleiro.verificaEmpateJogo()) {
@@ -103,9 +105,9 @@ public class GameBean implements Serializable {
 						tabuleiro.setTabuleiro(cpu.fazerJogada(tabuleiro.getTabuleiro()));
 						//Verifica se a máquina venceu o jogo
 						if (tabuleiro.finalizarJogo(cpu.getEscolha())) {
-							cpu.setPontuacao((byte) (cpu.getPontuacao() + 1));
 							FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Derrota: ", "A CPU venceu a partida!");
 							FacesContext.getCurrentInstance().addMessage(null, msg);
+							pontuacao02 ++;
 							encerrarJogo = true;
 						//Senão verifica se após a jogada da máquina houve empate
 						} else if (tabuleiro.verificaEmpateJogo()) {
@@ -127,15 +129,15 @@ public class GameBean implements Serializable {
 					tabuleiro.setTabuleiro(jogadorVez.fazerJogada(tabuleiro.getTabuleiro(), linha, coluna));
 					//Valida se o jogador 1 venceu a partida
 					if (tabuleiro.finalizarJogo(jogadorVez.getEscolha()) && jogadorVez.equals(jogador1)) {
-						jogador1.setPontuacao((byte) (jogador1.getPontuacao() + 1));
-						FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Vitória: ", "O jogador " + jogador1.getNome() + " a partida!");
+						FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Vitória: ", "O jogador " + jogador1.getNome() + " venceu a partida!");
 						FacesContext.getCurrentInstance().addMessage(null, msg);
+						pontuacao01 ++;
 						encerrarJogo = true;
-					//Senão, valilida se o jogador 2 venceu a partida
+					//Senão, valida se o jogador 2 venceu a partida
 					} else if (tabuleiro.finalizarJogo(jogadorVez.getEscolha()) && jogadorVez.equals(jogador2)) {
-						jogador2.setPontuacao((byte) (jogador2.getPontuacao() + 1));
-						FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Vitória: ", "O jogador " + jogador2.getNome() + " a partida!");
+						FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Vitória: ", "O jogador " + jogador2.getNome() + " venceu a partida!");
 						FacesContext.getCurrentInstance().addMessage(null, msg);
+						pontuacao02 ++;
 						encerrarJogo = true;
 					//Por último verifica, se houve empate
 					} else if (tabuleiro.verificaEmpateJogo()) {
@@ -238,6 +240,22 @@ public class GameBean implements Serializable {
 
 	public void setImg(String img) {
 		this.img = img;
+	}
+
+	public byte getPontuacao01() {
+		return pontuacao01;
+	}
+
+	public void setPontuacao01(byte pontuacao01) {
+		this.pontuacao01 = pontuacao01;
+	}
+
+	public byte getPontuacao02() {
+		return pontuacao02;
+	}
+
+	public void setPontuacao02(byte pontuacao02) {
+		this.pontuacao02 = pontuacao02;
 	}
 		
 }

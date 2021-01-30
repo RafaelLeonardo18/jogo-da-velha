@@ -14,7 +14,6 @@ public class Jogador implements InterfaceJogo {
 	//Atributos da classe
 	private String nome;
 	private String escolha;
-	private byte pontuacao;
 	
 	//Construtor da classe
 	public Jogador() {
@@ -82,23 +81,16 @@ public class Jogador implements InterfaceJogo {
 	public void setEscolha(String escolha) {
 		this.escolha = escolha;
 	}
-	public byte getPontuacao() {
-		return pontuacao;
-	}
-	public void setPontuacao(byte pontuacao) {
-		this.pontuacao = pontuacao;
-	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((escolha == null) ? 0 : escolha.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
-		result = prime * result + pontuacao;
 		return result;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -117,8 +109,6 @@ public class Jogador implements InterfaceJogo {
 			if (other.nome != null)
 				return false;
 		} else if (!nome.equals(other.nome))
-			return false;
-		if (pontuacao != other.pontuacao)
 			return false;
 		return true;
 	}
