@@ -21,28 +21,28 @@ class Teste {
 		while (true) {
 			//Vez do Jogador
 			tabuleiro.setTabuleiro(jogador.fazerJogada(tabuleiro.getTabuleiro()));
-			//Exibe no console as marcações do tabuleiro
+			//Exibe no console as marcaï¿½ï¿½es do tabuleiro
 			tabuleiro.exibeTabuleiro();
 			if (tabuleiro.finalizarJogo(jogador.getEscolha())) {
 				System.out.println("O jogador " + jogador.getNome() + " venceu a partida!");
 				break;
 			}
-			//Verifica se um empate ocorreu após a jogada do jogador
+			//Verifica se um empate ocorreu apï¿½s a jogada do jogador
 			if (tabuleiro.verificaEmpateTeste()){
-				System.out.println("Empate, ninguém conseguiu marcar ponto");
+				System.out.println("Empate, ninguÃ©m conseguiu marcar ponto");
 				break;
 			}
-			//Vez da máquina
+			//Vez da mï¿½quina
 			tabuleiro.setTabuleiro(cpu.fazerJogada(tabuleiro.getTabuleiro()));
-			//Exibe no console as marcações do tabuleiro
+			//Exibe no console as marcaï¿½ï¿½es do tabuleiro
 			tabuleiro.exibeTabuleiro();
 			if (tabuleiro.finalizarJogo(cpu.getEscolha())) {
-				System.out.println("Oh não... A CPU venceu a partida! Tente novamente");
+				System.out.println("Oh nÃ£o... A CPU venceu a partida! Tente novamente");
 				break;
 			}
-			//Verifica se um empate ocorreu após a jogada da máquina
+			//Verifica se um empate ocorreu apï¿½s a jogada da mï¿½quina
 			if (tabuleiro.verificaEmpateTeste()) {
-				System.out.println("Empate, ninguém conseguiu marcar ponto");
+				System.out.println("Empate, ninguÃ©m conseguiu marcar ponto");
 				break;
 			}
 		}	
