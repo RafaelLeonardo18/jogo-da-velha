@@ -12,10 +12,10 @@ public class InicioBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	//Define o modo de jogo que o usuário selecionar: 1) Um jogador e 2) Dois jogadores
+	//Define o modo de jogo que o usuario selecionar: 1) Um jogador e 2) Dois jogadores
 	private byte modoJogo;
 	
-	//Caso seja selecionado o modo de um jogador, define a dificuldade da máquina
+	//Caso seja selecionado o modo de um jogador, define a dificuldade da maquina
 	private byte dificuldade;
 	
 	//Caso seja selecionado o modo de dois jogadores, pede-se para inserir os nomes dos jogades e escolher os marcadores
@@ -23,7 +23,7 @@ public class InicioBean implements Serializable {
 	private String nome02 = "";
 	private String marcadores = "";
 	
-	//Valor da visibilidade dos botões e texto depois de selecionar as opções desejadas
+	//Valor da visibilidade dos botoes e texto depois de selecionar as opcoes desejadas
 	private boolean renderizarOpcaoInicial = true;
 	private boolean renderizarOpcaoUm = false;
 	private boolean renderizarOpcaoDois = false;

@@ -32,12 +32,12 @@ public class GameBean implements Serializable {
 	private String img = "";
 	private boolean encerrarJogo = false;
 	
-	//Métodos executados após a instanciação do Managed Bean
+	//Metodos executados apos a instanciacao do Managed Bean
 	@PostConstruct
 	public void prepararJogo() {
 		encerrarJogo = false;
 		tabuleiro = new Tabuleiro("blank.png");
-		//Processa os parâmetros recebidos do Menu Inicial e inicia o jogo conforme a escolha do usuário
+		//Processa os parametros recebidos do Menu Inicial e inicia o jogo conforme a escolha do usuario
 		HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
 		HttpSession session = request.getSession();
 		byte modoJogo = (byte) session.getAttribute("modoJogo");
@@ -74,7 +74,7 @@ public class GameBean implements Serializable {
 		}
 	}
 	
-	//Método de marcação do tabuleiro, recebe o valor da linha e coluna da view para preencher a posição do tabuleiro
+	//Metodo de marcar o tabuleiro, recebe o valor da linha e coluna da view para preencher a posicao do tabuleiro
 	public void inserirValor() {
 		if (!encerrarJogo) {
 			HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
@@ -86,65 +86,65 @@ public class GameBean implements Serializable {
 			//Recebe o modo de jogo escolhido pelo usuario: 1) Um jogador e 2) Dois jogadores
 			byte modoJogo = (byte) session.getAttribute("modoJogo");
 			if (modoJogo == 1) {
-				//Verifica se a posição escolhida está livre, se estiver preenche com o marcador do jogador
+				//Verifica se a posicao escolhida esta livre, se estiver preenche com o marcador do jogador
 				if (tabuleiro.verificaCasaVazia(tabuleiro.getTabuleiro(), linha, coluna)) {
 					tabuleiro.setTabuleiro(jogador1.fazerJogada(tabuleiro.getTabuleiro(), linha, coluna));
-					//Valida se após a escolha do jogador se ele venceu a partida
+					//Valida se apos a escolha do jogador se ele venceu a partida
 					if (tabuleiro.finalizarJogo(jogador1.getEscolha())) {
-						FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Vitória: ", "O jogador venceu a partida!");
+						FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "VitÃ³ria: ", "O jogador venceu a partida!");
 						FacesContext.getCurrentInstance().addMessage(null, msg);
 						pontuacao01 ++;
 						encerrarJogo = true;
-					//Caso não tenha preenchido a linha, verifica se houve empate
+					//Caso nao tenha preenchido a linha, verifica se houve empate
 					} else if (tabuleiro.verificaEmpateJogo()) {
-						FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Empate: ", "Ninguém conseguiu vencer...!");
+						FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Empate: ", "NinguÃ©m conseguiu vencer...!");
 						FacesContext.getCurrentInstance().addMessage(null, msg);
 						encerrarJogo = true;
-					//Se o jogador não venceu e não houve empate, a máquina faz uma jogada
+					//Se o jogador nao venceu e nao houve empate, a maquina faz uma jogada
 					} else {
 						tabuleiro.setTabuleiro(cpu.fazerJogada(tabuleiro.getTabuleiro()));
-						//Verifica se a máquina venceu o jogo
+						//Verifica se a maquina venceu o jogo
 						if (tabuleiro.finalizarJogo(cpu.getEscolha())) {
 							FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Derrota: ", "A CPU venceu a partida!");
 							FacesContext.getCurrentInstance().addMessage(null, msg);
 							pontuacao02 ++;
 							encerrarJogo = true;
-						//Senão verifica se após a jogada da máquina houve empate
+						//Senao verifica se apï¿½s a jogada da maquina houve empate
 						} else if (tabuleiro.verificaEmpateJogo()) {
-							FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Empate: ", "Ninguém conseguiu vencer...!");
+							FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Empate: ", "NinguÃ©m conseguiu vencer...!");
 							FacesContext.getCurrentInstance().addMessage(null, msg);
 							encerrarJogo = true;
 						}
 					}
-				//Porém se a posição escolhida estiver preenchida, dá um alerta para escolher outra posição!
+				//Porem se a posicao escolhida estiver preenchida, mostra um alerta para escolher outra posicao!
 				} else {
-					FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Atenção: ", "Esta posição já está ocupada");
+					FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "AtenÃ§Ã£o: ", "Esta posiÃ§Ã£o jÃ¡ estÃ¡ ocupada");
 					FacesContext.getCurrentInstance().addMessage(null, msg);
 				}
 				
 			} else if (modoJogo == 2) {
-				//No modo dois jogadores, verifica antes de tudo se a posição escolhida está disponível
+				//No modo dois jogadores, verifica antes de tudo se a posicao escolhida esta disponivel
 				if (tabuleiro.verificaCasaVazia(tabuleiro.getTabuleiro(), linha, coluna)) {
-					//Se a casa estiver disponível insere o marcador do jogador da vez
+					//Se a casa estiver disponivel insere o marcador do jogador da vez
 					tabuleiro.setTabuleiro(jogadorVez.fazerJogada(tabuleiro.getTabuleiro(), linha, coluna));
 					//Valida se o jogador 1 venceu a partida
 					if (tabuleiro.finalizarJogo(jogadorVez.getEscolha()) && jogadorVez.equals(jogador1)) {
-						FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Vitória: ", "O jogador " + jogador1.getNome() + " venceu a partida!");
+						FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "VitÃ³ria: ", "O jogador " + jogador1.getNome() + " venceu a partida!");
 						FacesContext.getCurrentInstance().addMessage(null, msg);
 						pontuacao01 ++;
 						encerrarJogo = true;
-					//Senão, valida se o jogador 2 venceu a partida
+					//Senao, valida se o jogador 2 venceu a partida
 					} else if (tabuleiro.finalizarJogo(jogadorVez.getEscolha()) && jogadorVez.equals(jogador2)) {
-						FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Vitória: ", "O jogador " + jogador2.getNome() + " venceu a partida!");
+						FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "VitÃ³ria: ", "O jogador " + jogador2.getNome() + " venceu a partida!");
 						FacesContext.getCurrentInstance().addMessage(null, msg);
 						pontuacao02 ++;
 						encerrarJogo = true;
-					//Por último verifica, se houve empate
+					//Por ï¿½ltimo verifica, se houve empate
 					} else if (tabuleiro.verificaEmpateJogo()) {
-						FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Empate: ", "Ninguém conseguiu vencer...!");
+						FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Empate: ", "NinguÃ©m conseguiu vencer...!");
 						FacesContext.getCurrentInstance().addMessage(null, msg);
 						encerrarJogo = true;
-					//Se ninguém venceu e não houve empate, alterna a vez entre os jogadores
+					//Se ninguem venceu e nao houve empate, alterna a vez entre os jogadores
 					} else {
 						if (jogadorVez.equals(jogador1)) {
 							jogadorVez = jogador2;
@@ -152,16 +152,16 @@ public class GameBean implements Serializable {
 							jogadorVez = jogador1;
 						}
 					}
-				//Porém se a posição escolhida estiver ocupada, dispara um aviso de que essa posição não pode ser escolhida
+				//Porem se a posicao escolhida estiver ocupada, dispara um aviso de que essa posicao nao pode ser escolhida
 				} else {
-					FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Atenção: ", "Esta posição já está ocupada");
+					FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "AtenÃ§Ã£o: ", "Esta posiÃ§Ã£o jÃ¡ estÃ¡ ocupada");
 					FacesContext.getCurrentInstance().addMessage(null, msg);
 				}
 			}
 		}
 	}
 	
-	//Retorna para o menu principal e limpa todos os parâmetros salvos no contexto
+	//Retorna para o menu principal e limpa todos os parametros salvos no contexto
 	public String retornarMenuPrincipal() {
 		HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
 		HttpSession session = request.getSession();

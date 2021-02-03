@@ -1,7 +1,7 @@
 package com.br.model;
 
 /**************************************************************************************************
- * Descrição: classe que representa o tabuleiro do jogo, recebendo as marcações dos jogadores e 
+ * Descricaoo: classe que representa o tabuleiro do jogo, recebendo os marcadores dos jogadores e 
  * 			  validando o resultado
  * Data: 15/01/2021
  * ************************************************************************************************/
@@ -20,7 +20,7 @@ public class Tabuleiro {
 		}
 	}
 	
-	//Construtor da classe para ser usada com a interface web, utilizando uma imagem em branco para representar as casas não ocupadas
+	//Construtor da classe para ser usada com a interface web, utilizando uma imagem em branco para representar as casas vazias
 	public Tabuleiro (String blankImage) {
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
@@ -29,7 +29,7 @@ public class Tabuleiro {
 		}
 	}
 	
-	//Método de validação se um dos jogadores foi vencedor ou não
+	//Metodo que verifica se um dos jogadores venceu a partida
 	public boolean finalizarJogo(String escolha) {
 		if (this.tabuleiro[0][0].equals(escolha) && this.tabuleiro [0][1].equals(escolha) && this.tabuleiro[0][2].equals(escolha)){
 			return true;
@@ -52,8 +52,8 @@ public class Tabuleiro {
 		}
 	}
 	
-	//Método de teste que valida um empate, verificando se o tabuleiro está cheio e nenhum jogador conseguiu fechar as linhas, colunas e diagonais
-	//Deve ser utilizado logo após o método finalizarJogo()
+	//Metodo de empate, verificando se o tabuleiro estï¿½ cheio e nenhum jogador conseguiu fechar as linhas, colunas e diagonais
+	//Deve ser utilizado logo depois do finalizarJogo()
 	public boolean verificaEmpateTeste() {
 		if  (!this.tabuleiro [0] [0].isEmpty() && !this.tabuleiro [0] [1].isEmpty() && !this.tabuleiro [0] [2].isEmpty()
 			&& !this.tabuleiro [1] [0].isEmpty() && !this.tabuleiro [1] [1].isEmpty() && !this.tabuleiro [1] [2].isEmpty()
@@ -64,8 +64,7 @@ public class Tabuleiro {
 		}
 	}
 	
-	//Método que será utilizado no jogo  para verificar se o tabuleiro está cheio e nenhum jogador conseguiu fechar as linhas, colunas e diagonais
-	//Deve ser utilizado logo após o método finalizarJogo()
+	//idem do metodo acima
 	public boolean verificaEmpateJogo() {
 		if  (!this.tabuleiro [0] [0].equals("blank.png") && !this.tabuleiro [0] [1].equals("blank.png") && !this.tabuleiro [0] [2].equals("blank.png")
 			&& !this.tabuleiro [1] [0].equals("blank.png") && !this.tabuleiro [1] [1].equals("blank.png") && !this.tabuleiro [1] [2].equals("blank.png")
@@ -76,7 +75,7 @@ public class Tabuleiro {
 		}
 	}
 	
-	//Verifica se uma casa está disponivel para marcação, método usado no modo dois jogadores
+	//Verifica se uma casa estiver disponivel para marcar
 	public boolean verificaCasaVazia(String [] [] tabuleiro, byte linha, byte coluna) {
 		if (tabuleiro[linha][coluna].equals("blank.png")) {
 			return true;
@@ -85,7 +84,7 @@ public class Tabuleiro {
 		}
 	}
 	
-	//Exibe o tabuleiro no console com as marcações feitas
+	//Exibe o tabuleiro no console com as marcas feitas
 	public void exibeTabuleiro() {
 		System.out.println(" | " + this.tabuleiro [0] [0] + " | " + this.tabuleiro [0] [1] + " | " + this.tabuleiro [0] [2] + " |");
 		System.out.println("----------------");

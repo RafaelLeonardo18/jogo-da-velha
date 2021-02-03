@@ -5,7 +5,7 @@ import java.util.Random;
 import com.br.interfacejogo.InterfaceJogo;
 
 /**************************************************************************************************
- * Descrição: classe que representa a máquina adversária do jogo
+ * Descricao: classe que representa o computador rival do jogo
  * Data: 15/01/2021
  * ************************************************************************************************/
 
@@ -20,7 +20,7 @@ public class CPU implements InterfaceJogo {
 		this.escolha = "";
 	}
 	
-	//Método de jogada da máquina conforme o valor escolhido antes da partida: 1) Fácil, 2) Médio e 3) Avançado
+	//Metodo de jogada da maquina conforme o valor escolhido antes da partida: 1) Facil, 2) Medio e 3) Avancado
 	public String [] [] fazerJogada(String [] [] tabuleiro){
 		if (this.dificuldade == 1) {
 			tabuleiro = jogadaFacil(tabuleiro);
@@ -32,7 +32,7 @@ public class CPU implements InterfaceJogo {
 		return tabuleiro;
 	}
 		
-	//Jogada de nível fácil: preenche de forma sequencial as casa vazias do tabuleiro
+	//Jogada de nivel facil: preenche de forma sequencial as casa vazias do tabuleiro
 	private String [] [] jogadaFacil (String [] [] tabuleiro){
 		boolean inserir = false;
 		while (inserir == false) {
@@ -40,7 +40,7 @@ public class CPU implements InterfaceJogo {
 				for (byte j = 0; j < 3; j++) {
 					if (tabuleiro [i] [j].isEmpty() || tabuleiro [i] [j].equals("blank.png")) {
 						tabuleiro [i] [j] = this.escolha;
-						System.out.println("A CPU escolheu a posição " + (i + 1) + "X" + (j + 1) + " para marcar um " + this.escolha);
+						System.out.println("A CPU escolheu a posiï¿½ï¿½o " + (i + 1) + "X" + (j + 1) + " para marcar um " + this.escolha);
 						inserir = true;
 						break;
 					} else {
@@ -55,7 +55,7 @@ public class CPU implements InterfaceJogo {
 		return tabuleiro;
 	}
 		
-	//Jogada de nível médio: realiza as jogadas de forma aleatória, porém quando há poucas casas disponíveis preenche de forma sequencial as casas vazias restantes
+	//Jogada de nivel medio: realiza as jogadas de forma aleatoria, porem quando tem poucas casas disponÃ­veis preenche de forma sequencial as casas vazias restantes
 	private String [] [] jogadaMedia(String [] [] tabuleiro){
 		Random gerador = new Random();
 		boolean inserir = false;
@@ -73,10 +73,10 @@ public class CPU implements InterfaceJogo {
 				byte coluna = (byte) gerador.nextInt(2);
 				if (tabuleiro [linha] [coluna].isEmpty() || tabuleiro [linha] [coluna].equals("blank.png")) {
 					tabuleiro [linha] [coluna] = escolha;
-					System.out.println("A CPU escolheu a posição " + (linha + 1) + "X" + (coluna + 1) + " para marcar um " + this.escolha);
+					System.out.println("A CPU escolheu a posiï¿½ï¿½o " + (linha + 1) + "X" + (coluna + 1) + " para marcar um " + this.escolha);
 					inserir = true;
 				} else {
-					System.out.println("A CPU ainda está escolhendo sua jogada!");
+					System.out.println("A CPU ainda estï¿½ escolhendo sua jogada!");
 				}
 			} else {
 				tabuleiro = jogadaFacil(tabuleiro);
@@ -86,7 +86,7 @@ public class CPU implements InterfaceJogo {
 		return tabuleiro;
 	}
 		
-	//Jogada de nível avançado: realiza uma série de análises antes de fazer a jogada, verificando a possibilidade de evitar derrota ou de vencer o jogo em cada linha, coluna e diagonal
+	//Jogada de nivel avancado: realiza uma serie de analises antes de fazer a jogada, verificando a possibilidade de evitar derrota ou de vencer o jogo em cada linha, coluna e diagonal
 	private String [] [] jogadaAvancada(String [] [] tabuleiro){	
 		
 		//Linha 01
@@ -313,7 +313,7 @@ public class CPU implements InterfaceJogo {
 			
 			tabuleiro [2] [0] = this.escolha;
 		
-		//Caso nenhuma situação de oportunidade ou ameaça seja encontrada, realiza uma jogada aleatória
+		//Caso negativo oportunidade ou ameaca seja encontrada, realiza uma jogada aleatoria
 		} else {
 			tabuleiro = jogadaMedia(tabuleiro);
 		}
