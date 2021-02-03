@@ -5,7 +5,7 @@ import javax.swing.JOptionPane;
 import com.br.interfacejogo.InterfaceJogo;
 
 /**************************************************************************************************
- * Descrição: classe que representa os jogadores reais 
+ * Descricao: classe que representa os jogadores reais 
  * Data: 15/01/2021
  * ***********************************************************************************************/
 
@@ -21,20 +21,20 @@ public class Jogador implements InterfaceJogo {
 		this.escolha = "";
 	}
 	
-	//Método de teste que realiza a Jogada do jogador, inserindo seu marcador na posição escolhida
+	//Metodo de teste que realiza a Jogada do jogador, inserindo seu marcador na posicao escolhida
 	public String [] [] fazerJogada(String [] [] tabuleiro){
 		boolean inserir = false;
 		byte linha = 0;
 		byte coluna = 0;
 		while (inserir == false) {
-			//Validação da entrada de dados, só aceita os valores 1, 2 ou 3
+			//Validacao da entrada de dados, aceita os valores 1, 2 ou 3
 			while (inserir == false) {
 				String txtLinha = JOptionPane.showInputDialog("Escolha uma linha do tabuleiro: 1, 2 ou 3");
 				if (txtLinha.equals("1") || txtLinha.equals("2") || txtLinha.equals("3")) {
 					linha = (byte) (Integer.parseInt(txtLinha) - 1);
 					inserir = true;
 				} else {
-					System.out.println("Valor inválido, insira novamente");
+					System.out.println("Valor invÃ¡lido, insira novamente");
 				}
 			}
 			inserir = false;
@@ -45,24 +45,24 @@ public class Jogador implements InterfaceJogo {
 					coluna = (byte) (Integer.parseInt(txtColuna) - 1);
 					inserir = true;
 				} else {
-					System.out.println("Valor inválido, insira novamente");
+					System.out.println("Valor invÃ¡lido, insira novamente");
 				}
 			}
 			inserir = false;
-			//Após validados os valores digitados verifica-se se a posição escolhida está disponível para marcação
+			//Validados os valores digitados verifica-se se a posicao escolhida estÃ¡ disponivel para marcacao
 			if (tabuleiro[linha] [coluna].isEmpty()) {
 				tabuleiro[linha] [coluna] = this.escolha;
-				System.out.println("Você escolheu a posição " + (linha + 1) + "X" + (coluna + 1) + " para marcar um " + this.escolha);
+				System.out.println("VocÃª escolheu a posiÃ§Ã£o " + (linha + 1) + "X" + (coluna + 1) + " para marcar um " + this.escolha);
 				inserir = true;
 			} else {
-				System.out.println("Essa posição já está ocupada!");
+				System.out.println("Essa posiÃ§Ã£o jÃ¡ estÃ¡ ocupada!");
 			}
 		}
 		return tabuleiro;
 	}
 	
 	
-	//Método usado com interface web que realiza a Jogada do jogador, inserindo seu marcador na posição escolhida da tela, recebendo o valor da posição por parâmetro
+	//Metodo usado com interface web que realiza a Jogada do jogador, inserindo seu marcador na posicao escolhida da tela, recebendo o valor da posicao por parÃ¢metro
 	public String [] [] fazerJogada(String [] [] tabuleiro, byte linha, byte coluna){
 		tabuleiro [linha] [coluna] = this.escolha;
 		return tabuleiro;
