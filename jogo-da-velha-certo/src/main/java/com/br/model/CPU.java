@@ -324,6 +324,7 @@ public class CPU implements InterfaceJogo {
 	public byte getDificuldade() {
 		return dificuldade;
 	}
+	
 	public void setDificuldade(byte dificuldade) {
 		this.dificuldade = dificuldade;
 	}
