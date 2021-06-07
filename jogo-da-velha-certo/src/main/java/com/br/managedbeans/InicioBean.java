@@ -13,7 +13,7 @@ public class InicioBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	//Define o modo de jogo que o usuario selecionar: 1) Um jogador e 2) Dois jogadores
-	private byte modoJogo;
+	private char modoJogo;
 	
 	//Caso seja selecionado o modo de um jogador, define a dificuldade da maquina
 	private byte dificuldade;
@@ -32,7 +32,8 @@ public class InicioBean implements Serializable {
 	
 	//Modo de um jogador
 	public void modoJogo1() {
-		this.modoJogo = 1;
+		// 'S' representa single player
+		this.modoJogo = 'S'; 
 		this.renderizarOpcaoInicial = false;
 		this.renderizarOpcaoUm = true;
 		this.renderizarBotaoVoltar = true;
@@ -40,7 +41,8 @@ public class InicioBean implements Serializable {
 	
 	//Modo de dois jogadores
 	public void modoJogo2() {
-		this.modoJogo = 2;
+		// 'M' representa multi player
+		this.modoJogo = 'M';
 		this.renderizarOpcaoInicial = false;
 		this.renderizarOpcaoDois = true;
 		this.renderizarBotaoVoltar = true;
@@ -62,7 +64,7 @@ public class InicioBean implements Serializable {
 	
 	//Voltar ao menu principal
 	public void voltar() {
-		this.modoJogo = 0;
+		this.modoJogo = '_';
 		this.renderizarOpcaoInicial = true;
 		this.renderizarOpcaoUm = false;
 		this.renderizarOpcaoDois = false;
@@ -71,11 +73,11 @@ public class InicioBean implements Serializable {
 	}
 	
 	//Setters e Getters
-	public byte getModoJogo() {
+	public char getModoJogo() {
 		return modoJogo;
 	}
 
-	public void setModoJogo(byte modoJogo) {
+	public void setModoJogo(char modoJogo) {
 		this.modoJogo = modoJogo;
 	}
 

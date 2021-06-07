@@ -38,9 +38,9 @@ public class GameBean implements Serializable {
 		//Processa os parametros recebidos do Menu Inicial e inicia o jogo conforme a escolha do usuario
 		HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
 		HttpSession session = request.getSession();
-		byte modoJogo = (byte) session.getAttribute("modoJogo");
+		char modoJogo = (char) session.getAttribute("modoJogo");
 		//Caso tenha sido escolhido o modo de um jogador, instancia os objetos 'jogador' e 'cpu'
-		if (modoJogo == 1) {
+		if (modoJogo == 'S') {
 			jogador1 = new Jogador();
 			cpu = new CPU();
 			jogador1.setEscolha("X.png");;
@@ -52,7 +52,7 @@ public class GameBean implements Serializable {
 			this.img = "cpu.jpg";
 			
 		//Se for escolhido o modo de dois jogadores, prepara os jogadores e instancia um objeto para alternar a vez de cada jogador
-		} else if (modoJogo == 2) {
+		} else if (modoJogo == 'M') {
 			jogador1 = new Jogador();
 			jogador2 = new Jogador();
 			jogador1.setNome((String) session.getAttribute("nome01"));
