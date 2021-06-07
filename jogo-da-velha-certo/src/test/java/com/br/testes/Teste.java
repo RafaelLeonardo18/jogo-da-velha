@@ -81,6 +81,16 @@ class Teste {
 			}
 		}
 	}
+	
+	@Test
+	public void testandoTexto() {
+		String [] [] texto = new String [3] [3]; 
+		
+		
+		System.out.println(texto [0]);
+		System.out.println(texto [1]);
+		System.out.println(texto [2]);
+	}
 }
 
 

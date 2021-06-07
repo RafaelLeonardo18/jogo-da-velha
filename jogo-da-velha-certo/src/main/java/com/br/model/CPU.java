@@ -14,6 +14,7 @@ public class CPU implements InterfaceJogo {
 	//Atributos da classe
 	private byte dificuldade;
 	private String escolha;
+	private int pontuacao;
 	
 	//Construtor da classe
 	public CPU () {
@@ -335,6 +336,14 @@ public class CPU implements InterfaceJogo {
 
 	public void setEscolha(String escolha) {
 		this.escolha = escolha;
+	}
+
+	public int getPontuacao() {
+		return pontuacao;
+	}
+
+	public void setPontuacao(int pontuacao) {
+		this.pontuacao = pontuacao;
 	}
 	
 }
